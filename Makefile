@@ -67,9 +67,9 @@ rootfs: base.tar.gz glibc.apk
 		zlib-dev \
 		jpeg-dev
 	sudo chroot rootfs /sbin/apk add \
-		python \
-		py-pip \
-		python-dev \
+		python3 \
+		py3-pip \
+		python3-dev \
 		graphviz \
 		openjdk8 \
 		ghostscript \
@@ -79,11 +79,12 @@ rootfs: base.tar.gz glibc.apk
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
+	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		pip
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
-		sphinx==1.7.5 \
+	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
+		sphinx \
 		sphinx-autobuild \
+		sphinx-jinja \
 		netaddr \
 		gitpython \
 		seqdiag \
@@ -100,7 +101,7 @@ rootfs: base.tar.gz glibc.apk
 		reportlab \
 		sphinxcontrib-plantuml \
 		colorama
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
+	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		tablib \
 		ciscoconfparse \
 		nety \
@@ -108,10 +109,8 @@ rootfs: base.tar.gz glibc.apk
 		sphinxcontrib_ansibleautodoc \
 		sphinxcontrib-jsonschema \
 		sphinxcontrib-confluencebuilder \
-		pyyaml==3.11 \
+		pyyaml \
 		yml2json
-	#sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
-	#	sphinx-jinja
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(ACROTEX_URL) \
 		-o /tmp/acrotex.zip
