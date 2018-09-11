@@ -67,6 +67,10 @@ rootfs: base.tar.gz glibc.apk
 		zlib-dev \
 		jpeg-dev
 	sudo chroot rootfs /sbin/apk add \
+		python \
+		py-pip \
+		python-dev
+	sudo chroot rootfs /sbin/apk add \
 		python3 \
 		py3-pip \
 		python3-dev \
@@ -79,8 +83,8 @@ rootfs: base.tar.gz glibc.apk
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
-	sudo -H chroot rootfs export \
-		PLANTUML=/usr/local/plantuml.jar
+	sudo -H chroot rootfs /bin/bash \
+		export PLANTUML=/usr/local/plantuml.jar
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		pip
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
