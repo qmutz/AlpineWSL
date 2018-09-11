@@ -4,12 +4,12 @@ based on [wsldl](https://github.com/yuk7/wsldl)
 
 ![screenshot](https://raw.githubusercontent.com/wiki/yuk7/wsldl/img/Arch_Alpine_Ubuntu.png)
 
-[![Build Status](https://img.shields.io/travis/yuk7/AlpineWSL.svg?style=flat-square)](https://travis-ci.org/yuk7/AlpineWSL)
-[![Github All Releases](https://img.shields.io/github/downloads/yuk7/AlpineWSL/total.svg?style=flat-square)](https://github.com/yuk7/AlpineWSL/releases/latest)
+[![Build Status](https://img.shields.io/travis/binarylandscapes/AlpineWSL.svg?style=flat-square)](https://travis-ci.org/binarylandscapes/AlpineWSL)
+[![Github All Releases](https://img.shields.io/github/downloads/binarylandscapes/AlpineWSL/total.svg?style=flat-square)](https://github.com/binarylandscapes/AlpineWSL/releases/latest)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-![License](https://img.shields.io/github/license/yuk7/AlpineWSL.svg?style=flat-square)
+![License](https://img.shields.io/github/license/binarylandscapes/AlpineWSL.svg?style=flat-square)
 
-### [Download](https://github.com/yuk7/AlpineWSL/releases/latest)
+### [Download](https://github.com/binarylandscapes/AlpineWSL/releases/latest)
 
 
 ## Requirements
@@ -17,13 +17,13 @@ based on [wsldl](https://github.com/yuk7/wsldl)
 * Windows Subsystem for Linux feature is enabled.
 
 ## Install
-#### 1. [Download](https://github.com/yuk7/AlpineWSL/releases/latest) installer zip
+#### 1. [Download](https://github.com/binarylandscapes/AlpineWSL/releases/latest) installer zip
 
 #### 2. Extract all files in zip file to same directory
 
 #### 3.Run Alpine.exe to Extract rootfs and Register to WSL
 Exe filename is using to the instance name to register.
-If you rename it you can register with a diffrent name.
+If you rename it you can register with a different name.
 
 
 ## How-to-Use(for Installed Instance)
