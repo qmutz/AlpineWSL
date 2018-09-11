@@ -79,6 +79,8 @@ rootfs: base.tar.gz glibc.apk
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
+	sudo -H chroot rootfs export \
+		PLANTUML=/usr/local/plantuml.jar
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		pip
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
@@ -118,6 +120,8 @@ rootfs: base.tar.gz glibc.apk
 		/usr/share/texmf-dist/tex/latex/acrotex
 	sudo chroot rootfs /usr/bin/unzip \
 		/tmp/acrotex.zip -d /usr/share/texmf-dist/tex/latex/acrotex
+	sudo chroot rootfs /bin/rm -f \
+		/tmp/acrotex.zip
 	sudo chroot rootfs /usr/bin/mktexlsr
 	sudo chroot rootfs /bin/ln -s \
 		/usr/share/fonts/ttf-dejavu \
