@@ -1,6 +1,11 @@
 # AlpineWSL
 Alpine Linux on WSL (Windows 10 FCU or later)
 based on [wsldl](https://github.com/yuk7/wsldl)
+but adds the following capabilities:
+
+* Git-LFS (Allows for files over 4GB that Windows OS has limited)
+* Sphinx and multiple supporting packages like PlantUML and Graphwiz and Latex support
+* Travis CLI tool
 
 ![screenshot](https://raw.githubusercontent.com/wiki/yuk7/wsldl/img/Arch_Alpine_Ubuntu.png)
 
