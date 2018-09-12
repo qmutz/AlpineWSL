@@ -83,8 +83,8 @@ rootfs: base.tar.gz glibc.apk
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
-	sudo -H chroot rootfs /bin/bash | export \
-		PLANTUML=/usr/local/plantuml.jar
+	#sudo -H chroot rootfs /bin/bash | export \
+	#	PLANTUML=/usr/local/plantuml.jar
 	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
 		pip
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
