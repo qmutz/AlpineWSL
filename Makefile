@@ -55,7 +55,8 @@ rootfs: base.tar.gz glibc.apk
 		curl \
 		zip \
 		unzip \
-		git-lfs
+		git-lfs \
+		subversion
 	sudo chroot rootfs /sbin/apk add \
 		gcc \
 		ghc \
@@ -83,12 +84,12 @@ rootfs: base.tar.gz glibc.apk
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
-	#sudo -H chroot rootfs /bin/bash | export \
-	#	PLANTUML=/usr/local/plantuml.jar
 	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
-		pip
+		pip \
+		wheel
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
-		pip
+		pip \
+		wheel
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx==1.7.5 \
 		sphinx-autobuild \
@@ -123,11 +124,23 @@ rootfs: base.tar.gz glibc.apk
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(ACROTEX_URL) \
 		-o /tmp/acrotex.zip
 	sudo chroot rootfs /bin/mkdir -p \
+		/tmp/acrotex_install
+	sudo chroot rootfs /bin/mkdir -p \
 		/usr/share/texmf-dist/tex/latex/acrotex
 	sudo chroot rootfs /usr/bin/unzip \
-		/tmp/acrotex.zip -d /usr/share/texmf-dist/tex/latex/acrotex
+		/tmp/acrotex.zip -d /tmp/acrotex_install/
+	sudo chroot rootfs cd /tmp/acrotex_install/acrotex/ \
+		| /usr/bin/latex acrotex.ins
+	sudo chroot rootfs /bin/cp \
+		/tmp/acrotex_install/acrotex/*.sty \
+		/usr/share/texmf-dist/tex/latex/acrotex/
+	sudo chroot rootfs /bin/cp \
+		/tmp/acrotex_install/acrotex/*.def \
+		/usr/share/texmf-dist/tex/latex/acrotex/
 	sudo chroot rootfs /bin/rm -f \
 		/tmp/acrotex.zip
+	sudo chroot rootfs /bin/rm -rf \
+		/tmp/acrotex_install
 	sudo chroot rootfs /usr/bin/mktexlsr
 	sudo chroot rootfs /bin/ln -s \
 		/usr/share/fonts/ttf-dejavu \
