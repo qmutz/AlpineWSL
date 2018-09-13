@@ -21,6 +21,9 @@ but adds the following capabilities:
 * Windows 10 1709 Fall Creators Update 64bit or later.
 * Windows Subsystem for Linux feature is enabled.
 
+## References
+* [Microsoft WSL Documentation](https://docs.microsoft.com/en-us/windows/wsl/about)
+
 ## Install
 #### 1. [Download](https://github.com/binarylandscapes/AlpineWSL/releases/latest) installer zip
 
