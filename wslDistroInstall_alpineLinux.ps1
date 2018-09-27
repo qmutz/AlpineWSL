@@ -9,15 +9,7 @@ param(
 [parameter(Mandatory=$true)][string]$email = "first.last@domain.com"
 )
 
-Write-Host -ForegroundColor Yellow ("`nEnter Administrator Credentials for this computer to check if  Windows Subsystem for Linux (WSL)is enabled")
-$wslStatus = Start-Process powershell.exe -Verb Runas -ArgumentList "`nGet-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux"
-if ($wslStatus.status -eq "Disabled") {
-	Write-Host -ForegroundColor Yellow ("`nEnter Administrator Credentials for this computer to enabled Windows Subsystem for Linux (WSL), Reboot and then continue script upon login")
-	Start-Process powershell.exe -Verb Runas -ArgumentList "`nEnable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart"
-	Restart-Computer -Wait
-}
-
-Write-Host -ForegroundColor Green ("`nWindows Subsystem for Linux (WSL) is enabled")
+Start-Transcript -path .\wslDistroInstall.log -append
 
 # Uninstall previous WSL distro if present
 if (Test-Path $wslPath) {
@@ -57,3 +49,4 @@ Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global user.na
 Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global user.email '$email'"  -NoNewWindow -Wait
 Remove-Item -Force $wslPath\rootfs.tar.gz
 Write-Host -ForegroundColor Green ("`nInstallation of Windows Subsystem for Linux (WSL), $wslDistro Linux is complete")
+Stop-Transcript
