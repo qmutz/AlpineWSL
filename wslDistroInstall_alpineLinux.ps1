@@ -3,10 +3,7 @@ param(
 [parameter(Mandatory=$false)][string]$name = "Alpine",
 [parameter(Mandatory=$false)][string]$wslDistro = $name + ".exe",
 [parameter(Mandatory=$false)][string]$wslPath = "C:\wsl\"+$name,
-[parameter(Mandatory=$false)][string]$wslPath_lnx = "/mnt/c/wsl/" + $name,
-[parameter(Mandatory=$false)][string]$wslDistro_oem = $wslPath + "\Alpine.exe",
-[parameter(Mandatory=$false)][string]$user = $env:UserName.ToLower(),
-[parameter(Mandatory=$true)][string]$email = "first.last@domain.com"
+[parameter(Mandatory=$false)][string]$wslDistro_oem = $wslPath + "\Alpine.exe"
 )
 
 Start-Transcript -path .\wslDistroInstall.log -append
@@ -30,23 +27,14 @@ Invoke-Command -ScriptBlock { Rename-Item -Path $args[0] -NewName $args[1] -Forc
 Start-Process $wslPath\$wslDistro -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run cd /usr/share/texmf-dist/tex/latex/acrotex; sudo latex acrotex.ins" -NoNewWindow -Wait # would like to add this to makefile
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo mktexlsr" -NoNewWindow -Wait # would like to add this to makefile
-#Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system core.filemode false" -NoNewWindow
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system core.autocrlf false"  -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system core.symlinks false"  -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system rebase.autosquash true" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system lfs.activitytimeout 0" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system credential.helper 'cache --timeout 30000'" -NoNewWindow -Wait
+Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system color.ui false" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run git lfs install"  -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo ln -s /usr/bin/python3 /usr/bin/python"
-Write-Host -ForegroundColor Yellow ("`nSet password for $user when prompted")
-Start-Process $wslPath\$wslDistro -ArgumentList "run adduser $user --shell bash --uid 1000" -NoNewWindow -Wait
-Start-Process $wslPath\$wslDistro -ArgumentList "run echo '$user ALL=(ALL) ALL' >> /etc/sudoers" -NoNewWindow -Wait
-Start-Process $wslPath\$wslDistro -ArgumentList "config --default-uid 1000" -NoNewWindow -Wait
-Start-Process $wslPath\$wslDistro -ArgumentList "run echo export PLANTUML=/usr/local/plantuml.jar >> ~/.bash_profile"  -NoNewWindow -Wait # would like to add this to makefile
-Start-Process $wslPath\$wslDistro -ArgumentList "run echo from pprint import pprint >> ~/.pyrc"  -NoNewWindow -Wait # would like to add this to makefile
-Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global http.sslVerify false"  -NoNewWindow -Wait
-Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global user.name $user"  -NoNewWindow -Wait
-Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global user.email '$email'"  -NoNewWindow -Wait
 Remove-Item -Force $wslPath\rootfs.tar.gz
 Write-Host -ForegroundColor Green ("`nInstallation of Windows Subsystem for Linux (WSL), $wslDistro Linux is complete")
 Stop-Transcript
