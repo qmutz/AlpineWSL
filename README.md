@@ -1,4 +1,5 @@
 # AlpineWSL
+
 Alpine Linux on WSL (Windows 10 FCU or later)
 based on [wsldl](https://github.com/yuk7/wsldl)
 but adds the following capabilities:
@@ -6,6 +7,8 @@ but adds the following capabilities:
 * Git-LFS (Allows for files over 4GB that Windows OS has limited)
 * Sphinx and multiple supporting packages like PlantUML and Graphwiz and Latex support
 * Travis CLI tool
+* MKISOFS Capability
+* Added [wslgit](https://github.com/andy-5/wslgit) for Windows WSL Git & Git-LFS integration
 
 ![screenshot](https://raw.githubusercontent.com/wiki/yuk7/wsldl/img/Arch_Alpine_Ubuntu.png)
 
@@ -14,28 +17,42 @@ but adds the following capabilities:
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![License](https://img.shields.io/github/license/binarylandscapes/AlpineWSL.svg?style=flat-square)
 
-### [Download](https://github.com/binarylandscapes/AlpineWSL/releases/latest)
-
+## [Download](https://github.com/binarylandscapes/AlpineWSL/releases/latest)
 
 ## Requirements
+
 * Windows 10 1709 Fall Creators Update 64bit or later.
 * Windows Subsystem for Linux feature is enabled.
 
 ## References
+
 * [Microsoft WSL Documentation](https://docs.microsoft.com/en-us/windows/wsl/about)
 
 ## Install
-#### 1. [Download](https://github.com/binarylandscapes/AlpineWSL/releases/latest) installer zip
 
-#### 2. Extract all files in zip file to same directory
+### 1. [Download](https://github.com/binarylandscapes/AlpineWSL/releases/latest) installer zip
 
-#### 3.Run Alpine.exe to Extract rootfs and Register to WSL
-Exe filename is using to the instance name to register.
-If you rename it you can register with a different name.
+### 2. Extract all files in zip file to same directory (Recommend C:\TEMP)
 
+### 3. Run addWSLfeature.ps1 to add Windows Subsystem for Linux feature and reboot, if not already done
+
+### 4. Run install.ps1 from an Elevated Powershell window to
+
+* Remove previous AlpineWSL
+* Extract rootfs
+* Copy needed scripts and exes
+* Register to WSL
+* Complete system Git configuration for Git and Git-LFS
+* Set python as a pointer to python3
+* Cleanup
+* Create a desktop shortcut
+
+Note -  Exe filename is using to the instance name to register. If you rename it you can register with a different name and have multiple installs.
 
 ## How-to-Use(for Installed Instance)
-#### exe Usage
+
+### exe Usage
+
 ```dos
 Useage :
     <no args>
@@ -63,17 +80,19 @@ Useage :
       - Print this usage message.
 ```
 
-
 #### How to uninstall instance
+
 ```dos
 >Alpine.exe clean
 
 ```
 
 ## How-to-Build
+
 AlpineWSL can build on GNU/Linux or WSL.
 
 `curl`,`zip`,`unzip`,`tar`(gnu) and `sudo` is required for build.
+
 ```shell
 $ make
 ```
