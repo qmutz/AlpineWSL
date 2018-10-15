@@ -9,7 +9,9 @@ LNCR_ZIP_URL=https://github.com/yuk7/wsldl/releases/download/18080900/icons.zip
 LNCR_ZIP_EXE=Alpine.exe
 PLANTUML_URL=http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 ACROTEX_URL=http://mirrors.ctan.org/macros/latex/contrib/acrotex.zip
-
+INSTALL_PS_SCRIPT=https://github.com/binarylandscapes/AlpineWSL/blob/master/wslDistroInstall_alpineLinux.ps1
+FEATURE_PS_SCRIPT=https://github.com/binarylandscapes/AlpineWSL/blob/master/wslFeatureInstall.ps1
+USER_PS_SCRIPT=https://github.com/binarylandscapes/AlpineWSL/blob/master/wslUserSetup_alpineLinux.ps1
 all: $(OUT_ZIP)
 
 zip: $(OUT_ZIP)
@@ -17,11 +19,19 @@ $(OUT_ZIP): ziproot
 	@echo -e '\e[1;31mBuilding $(OUT_ZIP)\e[m'
 	cd ziproot; zip ../$(OUT_ZIP) *
 
-ziproot: Launcher.exe rootfs.tar.gz
+ziproot: Launcher.exe rootfs.tar.gz ps_scripts
 	@echo -e '\e[1;31mBuilding ziproot...\e[m'
 	mkdir ziproot
 	cp Launcher.exe ziproot/${LNCR_EXE}
 	cp rootfs.tar.gz ziproot/
+	cp install.ps1 ziproot/
+	cp addWSLfeature.ps1 ziproot/
+	cp setupUser.ps1 ziproot/
+
+ps_scripts:
+	$(DLR) $(DLR_FLAGS) $(INSTALL_PS_SCRIPT) -o install.ps1
+	$(DLR) $(DLR_FLAGS) $(FEATURE_PS_SCRIPT) -o addWSLfeature.ps1
+	$(DLR) $(DLR_FLAGS) $(USER_PS_SCRIPT) -o setupUser.ps1
 
 exe: Launcher.exe
 Launcher.exe: icons.zip
@@ -49,6 +59,7 @@ rootfs: base.tar.gz glibc.apk
 	sudo chroot rootfs /sbin/apk update
 	sudo chroot rootfs /sbin/apk add \
 		bash \
+		bash-completion \
 		alpine-sdk \
 		coreutils \
 		wget \
@@ -56,7 +67,8 @@ rootfs: base.tar.gz glibc.apk
 		zip \
 		unzip \
 		git-lfs \
-		subversion
+		subversion \
+		cdrkit
 	sudo chroot rootfs /sbin/apk add \
 		gcc \
 		ghc \

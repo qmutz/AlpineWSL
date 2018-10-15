@@ -6,7 +6,7 @@ param(
 [parameter(Mandatory=$true)][string]$email = "first.last@domain.com"
 )
 
-Start-Transcript -path .\wslDistroUser.log -append
+Start-Transcript -path C:\TEMP\wslDistroUser.log -append
 
 # Configure user for WSL Distro
 Write-Host -ForegroundColor Yellow ("`nConfiguring user:$user for Windows Subsystem for Linux (WSL), $wslDistro Linux")
