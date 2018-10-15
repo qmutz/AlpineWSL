@@ -35,11 +35,5 @@ Start-Process $wslPath\$wslDistro -ArgumentList "run sudo ln -s /usr/bin/python3
 Remove-Item -Force $wslPath\rootfs.tar.gz
 Remove-Item -Force $wslPath\addWSLfeature.ps1
 Remove-Item -Force $wslPath\install.ps1
-$TargetFile = "$wslDistro_oem"
-$ShortcutFile = "$env:Public\Desktop\Alpine WSL.lnk"
-$WScriptShell = New-Object -ComObject WScript.Shell
-$Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
-$Shortcut.TargetPath = $TargetFile
-$Shortcut.Save()
 Write-Host -ForegroundColor Green ("`nInstallation of Windows Subsystem for Linux (WSL), $wslDistro Linux is complete")
 Stop-Transcript
