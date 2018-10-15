@@ -1,4 +1,4 @@
-Start-Transcript -path .\wslFeatureInstall.log -append
+Start-Transcript -path C:\TEMP\wslFeatureInstall.log -append
 $wslState = Get-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 if ($wslState.State -eq "Disabled") {
 	Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
