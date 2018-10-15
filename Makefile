@@ -9,9 +9,9 @@ LNCR_ZIP_URL=https://github.com/yuk7/wsldl/releases/download/18100300/icons.zip
 LNCR_ZIP_EXE=Alpine.exe
 PLANTUML_URL=http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 ACROTEX_URL=http://mirrors.ctan.org/macros/latex/contrib/acrotex.zip
-INSTALL_PS_SCRIPT=https://github.com/binarylandscapes/AlpineWSL/blob/master/wslDistroInstall_alpineLinux.ps1
-FEATURE_PS_SCRIPT=https://github.com/binarylandscapes/AlpineWSL/blob/master/wslFeatureInstall.ps1
-USER_PS_SCRIPT=https://github.com/binarylandscapes/AlpineWSL/blob/master/wslUserSetup_alpineLinux.ps1
+INSTALL_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/install.ps1
+FEATURE_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/addWSLfeature.ps1
+USER_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/setupUser.ps1
 wslGit=https://github.com/andy-5/wslgit/releases/download/v0.6.0/wslgit.exe
 all: $(OUT_ZIP)
 
