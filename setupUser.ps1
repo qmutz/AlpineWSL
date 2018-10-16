@@ -19,7 +19,7 @@ Start-Process $wslPath\$wslDistro -ArgumentList "run echo from pprint import ppr
 Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global http.sslVerify false"  -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global user.name $user"  -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global user.email '$email'"  -NoNewWindow -Wait
-$TargetFile = ".\$wslDistro "
+$TargetFile = "$wslPath\$wslDistro"
 $ShortcutFile = "C:\Users\$user\Desktop\Alpine WSL.lnk"
 $WScriptShell = New-Object -ComObject WScript.Shell
 $Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
