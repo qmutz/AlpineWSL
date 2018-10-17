@@ -29,7 +29,7 @@ Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system co
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system rebase.autosquash true" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system lfs.activitytimeout 0" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system credential.helper 'cache --timeout 30000'" -NoNewWindow -Wait
-Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system color.ui false" -NoNewWindow -Wait
+Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system color.diff false" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run git lfs install"  -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo ln -s /usr/bin/python3 /usr/bin/python" -NoNewWindow -Wait
 Remove-Item -Force $wslPath\rootfs.tar.gz
