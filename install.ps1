@@ -21,9 +21,9 @@ Else {
 # Install WSL Distro
 Write-Host -ForegroundColor Yellow ("`nInstalling Windows Subsystem for Linux (WSL), $wslDistro Linux")
 Invoke-Command -ScriptBlock { Copy-Item -Recurse -Path .\ -Destination $args[0] -Force } -ArgumentList $wslPath
-Start-Process $wslPath\$wslDistro -NoNewWindow -Wait
-Start-Process $wslPath\$wslDistro -ArgumentList "run cd /usr/share/texmf-dist/tex/latex/acrotex; sudo latex acrotex.ins" -NoNewWindow -Wait # would like to add this to makefile
-Start-Process $wslPath\$wslDistro -ArgumentList "run sudo mktexlsr" -NoNewWindow -Wait # would like to add this to makefile
+Start-Process $wslPath\$wslDistro -ArgumentList "silent" -NoNewWindow -Wait
+#Start-Process $wslPath\$wslDistro -ArgumentList "run cd /usr/share/texmf-dist/tex/latex/acrotex; sudo latex acrotex.ins" -NoNewWindow -Wait # would like to add this to makefile
+#Start-Process $wslPath\$wslDistro -ArgumentList "run sudo mktexlsr" -NoNewWindow -Wait # would like to add this to makefile
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system core.autocrlf false"  -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system core.symlinks false"  -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system rebase.autosquash true" -NoNewWindow -Wait
@@ -31,7 +31,6 @@ Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system lf
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system credential.helper 'cache --timeout 30000'" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system color.diff false" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run git lfs install"  -NoNewWindow -Wait
-Start-Process $wslPath\$wslDistro -ArgumentList "run sudo ln -s /usr/bin/python3 /usr/bin/python" -NoNewWindow -Wait
 Remove-Item -Force $wslPath\rootfs.tar.gz
 Remove-Item -Force $wslPath\addWSLfeature.ps1
 Remove-Item -Force $wslPath\install.ps1
