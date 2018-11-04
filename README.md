@@ -24,6 +24,15 @@ but adds the following capabilities:
 * Windows 10 1709 Fall Creators Update 64bit or later.
 * Windows Subsystem for Linux feature is enabled.
 
+---
+**IMPORTANT**
+
+Be aware that if installing any WSL instance on Windows 10 1803+, your system automatically is configured with NTFS "Case Sensitive" for any folder created by the WSL instance. This may have issues with Windows usage of files in those folders.
+
+[Per -directory case sensitivity and WSL](https://blogs.msdn.microsoft.com/commandline/2018/02/28/per-directory-case-sensitivity-and-wsl/)
+
+---
+
 ## References
 
 * [Microsoft WSL Documentation](https://docs.microsoft.com/en-us/windows/wsl/about)
@@ -41,9 +50,8 @@ but adds the following capabilities:
 * Remove previous AlpineWSL
 * Extract rootfs
 * Copy needed scripts and exes
-* Register to WSL
+* Register to WSL, silently
 * Complete system Git configuration for Git and Git-LFS
-* Set python as a pointer to python3
 * Cleanup
 * Create a desktop shortcut
 
