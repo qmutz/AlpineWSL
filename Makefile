@@ -144,7 +144,7 @@ rootfs: base.tar.gz glibc.apk
 	sudo chroot rootfs /usr/bin/unzip \
 		/tmp/acrotex.zip -d /usr/share/texmf-dist/tex/latex/
 	sudo chroot rootfs /usr/share/texmf-dist/tex/latex/acrotex \
-		/usr/bin/latex acrotex.ins
+		sudo /usr/bin/latex acrotex.ins
 	sudo chroot rootfs /usr/bin/mktexlsr
 	sudo chroot rootfs /bin/rm -f \
 		/tmp/acrotex.zip
