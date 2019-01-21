@@ -16,6 +16,7 @@ If (Test-Path $wslPath) {
     Write-Host -ForegroundColor Yellow ("`nUninstalling previous Windows Subsystem for Linux (WSL), $wslDistro Linux")
     Start-Process $wslPath\$wslDistro -ArgumentList "clean" -NoNewWindow -Wait
     Get-ChildItem -Path $wslPath -Recurse | Remove-Item -force -recurse
+    Remove-Item -Force $wslPath
     Remove-Item -Force $ShortcutFile
     Write-Host -ForegroundColor Yellow ("`nPrevious Windows Subsystem for Linux (WSL), $wslDistro Linux FOUND and REMOVED.")
 }
