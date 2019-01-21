@@ -39,23 +39,29 @@ Be aware that if installing any WSL instance on Windows 10 1803+, your system au
 
 ## Install
 
-### 1. [Download](https://github.com/binarylandscapes/AlpineWSL/releases/latest) installer zip
+### 1. [Download](https://github.com/binarylandscapes/AlpineWSL/releases/latest) Alpine.zip
 
-### 2. Extract all files in zip file to same directory (Recommend C:\TEMP)
+### 2. Extract zip file to a new Alpine directory containing all files (Recommend C:\TEMP or Downloads folder)
 
-### 3. Run addWSLfeature.ps1 to add Windows Subsystem for Linux feature and reboot, if not already done
+### 3. Run ```addWSLfeature.ps1``` to add Windows Subsystem for Linux feature and reboot, if not already done
 
-### 4. Run install.ps1 from an Elevated Powershell window to
+### 4. Run ```install.ps1``` from a Powershell window to
 
-* Remove previous AlpineWSL
-* Extract rootfs
-* Copy needed scripts and exes
-* Register to WSL, silently
-* Complete system Git configuration for Git and Git-LFS
-* Cleanup
-* Create a desktop shortcut
+* Checks for and removes previous AlpineWSL distro (if distro location matches script parameters)
+* Copies files from zip to ```C:\Users\<user>\.wsl\<distroName>\``` for install location
+* Registers to WSL, silently
+* Completes system\user configuration for Git, Git-LFS and Sphinx. **Will prompt for password of distro user**
+* Creates a desktop shortcut
+* Performs cleanup
 
 Note -  Exe filename is using to the instance name to register. If you rename it you can register with a different name and have multiple installs.
+
+```dos
+install.ps1 [parameter [default value]] :
+  - `--distroName <Alpine>`: Sets the name of <installer> exe file, this must match the filename of the actual exe
+  - `--user <$env:UserName.ToLower()>`: Sets the username for this distro and Git to your Windows user name that opened Powershell
+  - `--email <username@domain>`: Sets the email for Git. This is forced prompted to enter during script
+```
 
 ## How-to-Use(for Installed Instance)
 
@@ -64,7 +70,10 @@ Note -  Exe filename is using to the instance name to register. If you rename it
 ```dos
 Useage :
     <no args>
-      - Launches the distro's default behavior. By default, this launches your default shell.
+      - Launches the distro's default behavior. By default, this launches your default shell or installs if not installed.
+
+    silent
+      - Use during installation of distro to supress all error messages and install completion prompt
 
     run <command line>
       - Run the given command line in that distro.
