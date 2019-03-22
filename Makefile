@@ -16,7 +16,7 @@ wslGit=https://github.com/andy-5/wslgit/releases/download/v0.7.0/wslgit.exe
 all: $(OUT_ZIP)
 
 zip: $(OUT_ZIP)
-$(OUT_ZIP): ziproot
+    $(OUT_ZIP): ziproot
     @echo -e '\e[1;31mBuilding $(OUT_ZIP)\e[m'
     cd ziproot; zip ../$(OUT_ZIP) *
 
@@ -134,7 +134,7 @@ rootfs: base.tar.gz glibc.apk
         yml2json
     sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
         sphinx-markdown-builder \
-        sphinxcontrib-fulltoc        
+        sphinxcontrib-fulltoc
     sudo chroot rootfs \
         /usr/bin/$(DLR) $(DLR_FLAGS) $(ACROTEX_URL) \
         -o /tmp/acrotex.zip
