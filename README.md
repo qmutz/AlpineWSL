@@ -1,6 +1,6 @@
 # AlpineWSL
 
-Alpine Linux on WSL (Windows 10 FCU or later)
+Alpine Linux on WSL (Windows 10 1803 or later)
 based on [wsldl](https://github.com/yuk7/wsldl)
 but adds the following capabilities:
 
@@ -10,7 +10,7 @@ but adds the following capabilities:
 * MKISOFS Capability
 * Added [wslgit](https://github.com/andy-5/wslgit) for Windows WSL Git & Git-LFS integration
 
-![screenshot](https://raw.githubusercontent.com/wiki/yuk7/wsldl/img/Arch_Alpine_Ubuntu.png)
+![screenshot](https://raw.githubusercontent.com/wiki/yuk7/wsldl/img/Arch_Alpine_Cent.png)
 
 [![Build Status](https://img.shields.io/travis/binarylandscapes/AlpineWSL.svg?style=flat-square)](https://travis-ci.org/binarylandscapes/AlpineWSL)
 [![Github All Releases](https://img.shields.io/github/downloads/binarylandscapes/AlpineWSL/total.svg?style=flat-square)](https://github.com/binarylandscapes/AlpineWSL/releases/latest)
@@ -21,7 +21,7 @@ but adds the following capabilities:
 
 ## Requirements
 
-* Windows 10 1709 Fall Creators Update 64bit or later.
+* Windows 10 1803 April 2018 Update x64 or later.
 * Windows Subsystem for Linux feature is enabled.
 
 ---
