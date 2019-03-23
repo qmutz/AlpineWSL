@@ -16,7 +16,7 @@ wslGit=https://github.com/andy-5/wslgit/releases/download/v0.7.0/wslgit.exe
 all: $(OUT_ZIP)
 
 zip: $(OUT_ZIP)
-    $(OUT_ZIP): ziproot
+$(OUT_ZIP): ziproot
     @echo -e '\e[1;31mBuilding $(OUT_ZIP)\e[m'
     cd ziproot; zip ../$(OUT_ZIP) *
 
@@ -51,7 +51,7 @@ rootfs.tar.gz: rootfs
     cd rootfs; sudo tar -zcpf ../rootfs.tar.gz `sudo ls`
     sudo chown `id -un` rootfs.tar.gz
 
-rootfs: base.tar.gz glibc.apk
+rootfs: base.tar.gz
     @echo -e '\e[1;31mBuilding rootfs...\e[m'
     mkdir rootfs
     sudo tar -zxpf base.tar.gz -C rootfs
