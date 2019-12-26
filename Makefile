@@ -11,7 +11,7 @@ PLANTUML_URL=http://sourceforge.net/projects/plantuml/files/plantuml.jar/downloa
 ACROTEX_URL=http://mirrors.ctan.org/macros/latex/contrib/acrotex.zip
 INSTALL_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/install.ps1
 FEATURE_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/addWSLfeature.ps1
-wslGit=https://github.com/andy-5/wslgit/releases/download/v0.7.0/wslgit.exe
+wslGit=https://github.com/andy-5/wslgit/releases/download/v0.8.0/wslgit.exe
 
 all: $(OUT_ZIP)
 
