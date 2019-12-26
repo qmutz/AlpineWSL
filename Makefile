@@ -91,7 +91,8 @@ rootfs: base.tar.gz profile
 		graphviz \
 		openjdk8 \
 		ghostscript \
-		ttf-dejavu
+		ttf-dejavu \
+		xlsxwriter
 	sudo chroot rootfs /sbin/apk add \
 		texlive-full > /dev/null
 	sudo chroot rootfs \
