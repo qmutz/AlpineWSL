@@ -92,7 +92,7 @@ rootfs: base.tar.gz profile
 		openjdk8 \
 		ghostscript \
 		ttf-dejavu \
-		xlsxwriter
+		XlsxWriter
 	sudo chroot rootfs /sbin/apk add \
 		texlive-full > /dev/null
 	sudo chroot rootfs \
