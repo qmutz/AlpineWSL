@@ -3,8 +3,8 @@ LNCR_EXE=Alpine.exe
 
 DLR=curl
 DLR_FLAGS=-L
-BASE_URL=http://dl-cdn.alpinelinux.org/alpine/v3.9/releases/x86_64/alpine-minirootfs-3.9.2-x86_64.tar.gz
-LNCR_ZIP_URL=https://github.com/yuk7/wsldl/releases/download/19031901/icons.zip
+BASE_URL=http://dl-cdn.alpinelinux.org/alpine/v3.11/releases/x86_64/alpine-minirootfs-3.11.0-x86_64.tar.gz
+LNCR_ZIP_URL=https://github.com/yuk7/wsldl/releases/download/19111602/icons.zip
 LNCR_ZIP_EXE=Alpine.exe
 
 PLANTUML_URL=http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
@@ -51,11 +51,12 @@ rootfs.tar.gz: rootfs
 	cd rootfs; sudo tar -zcpf ../rootfs.tar.gz `sudo ls`
 	sudo chown `id -un` rootfs.tar.gz
 
-rootfs: base.tar.gz
+rootfs: base.tar.gz profile
 	@echo -e '\e[1;31mBuilding rootfs...\e[m'
 	mkdir rootfs
 	sudo tar -zxpf base.tar.gz -C rootfs
 	sudo cp -f /etc/resolv.conf rootfs/etc/resolv.conf
+	sudo cp -f profile rootfs/etc/profile
 	sudo chroot rootfs /sbin/apk update
 	sudo chroot rootfs /sbin/apk add \
 		bash \
