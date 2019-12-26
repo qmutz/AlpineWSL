@@ -91,8 +91,7 @@ rootfs: base.tar.gz profile
 		graphviz \
 		openjdk8 \
 		ghostscript \
-		ttf-dejavu \
-		XlsxWriter
+		ttf-dejavu
 	sudo chroot rootfs /sbin/apk add \
 		texlive-full > /dev/null
 	sudo chroot rootfs \
@@ -123,7 +122,8 @@ rootfs: base.tar.gz profile
 		plantuml \
 		reportlab \
 		sphinxcontrib-plantuml \
-		colorama
+		colorama \
+		xlsxwriter
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		tablib \
 		ciscoconfparse \
