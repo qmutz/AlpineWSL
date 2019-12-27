@@ -93,10 +93,10 @@ rootfs: base.tar.gz profile
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
+	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		pip \
 		wheel
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
+	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx \
 		sphinx-autobuild \
 		sphinx-jinja \
@@ -117,7 +117,7 @@ rootfs: base.tar.gz profile
 		reportlab \
 		colorama \
 		xlsxwriter
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
+	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		tablib \
 		ciscoconfparse \
 		nety \
@@ -127,7 +127,7 @@ rootfs: base.tar.gz profile
 		sphinxcontrib-confluencebuilder \
 		pyyaml \
 		yml2json
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
+	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx-markdown-builder \
 		sphinxcontrib-fulltoc
 	sudo chroot rootfs \
