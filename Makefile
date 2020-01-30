@@ -87,11 +87,9 @@ rootfs: base.tar.gz profile
 		cython \
 		py3-numpy \
 		py3-numpy-dev \
-		python \
-		py-pip \
-		python-dev \
-		numpy \
-		numpy-dev \
+		python2 \
+		py2-pip \
+		python2-dev \
 		graphviz \
 		openjdk8 \
 		ghostscript \
