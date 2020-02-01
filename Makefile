@@ -132,7 +132,8 @@ rootfs: base.tar.gz profile
 		sphinxcontrib_ansibleautodoc \
 		sphinxcontrib-jsonschema \
 		sphinxcontrib-confluencebuilder \
-		pyyaml
+		pyyaml \
+		yamlreader
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx-markdown-builder \
 		sphinxcontrib-fulltoc
