@@ -54,7 +54,7 @@ Be aware that if installing any WSL instance on Windows 10 1803+, your system au
 * Creates a desktop shortcut
 * Performs cleanup
 
-Note -  Exe filename is using to the instance name to register. If you rename it you can register with a different name and have multiple installs.
+Note -  Exe filename is using to the instance name to register. If you rename it, you can register with a different name and have multiple installs.
 
 ```dos
 install.ps1 [parameter [default value]] :
@@ -68,15 +68,15 @@ install.ps1 [parameter [default value]] :
 ### exe Usage
 
 ```dos
-Useage :
+Usage :
     <no args>
-      - Launches the distro's default behavior. By default, this launches your default shell or installs if not installed.
+      - Open a new shell with your default settings.
 
     silent
       - Use during installation of distro to supress all error messages and install completion prompt
 
     run <command line>
-      - Run the given command line in that distro.
+      - Run the given command line in that distro. Inherit current directory.
 
     config [setting [value]]
       - `--default-user <user>`: Set the default user for this distro to <user>
@@ -90,8 +90,11 @@ Useage :
       - `--mount-drive`: Get on/off status of Mount drives
       - `--lxuid`: Get LxUID key for this distro
 
+    backup
+      - Output backup.tar.gz to the current directory using tar command.
+
     clean
-     - Uninstalls the distro.
+     - Uninstall the distro.
 
     help
       - Print this usage message.
