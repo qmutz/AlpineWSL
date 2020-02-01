@@ -176,9 +176,6 @@ Arguments to manage Windows Subsystem for Linux:
         Display usage information.
 ```
 
-#### Forgotton user password
-
-
 ## How-to-Build
 
 AlpineWSL can build on GNU/Linux or WSL.
