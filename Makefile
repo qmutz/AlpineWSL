@@ -3,15 +3,15 @@ LNCR_EXE=Alpine.exe
 
 DLR=curl
 DLR_FLAGS=-L
-BASE_URL=http://dl-cdn.alpinelinux.org/alpine/v3.11/releases/x86_64/alpine-minirootfs-3.11.0-x86_64.tar.gz
-LNCR_ZIP_URL=https://github.com/yuk7/wsldl/releases/download/19111602/icons.zip
+BASE_URL=http://dl-cdn.alpinelinux.org/alpine/v3.11/releases/x86_64/alpine-minirootfs-3.11.4-x86_64.tar.gz
+LNCR_ZIP_URL=https://github.com/yuk7/wsldl/releases/download/20013100/icons.zip
 LNCR_ZIP_EXE=Alpine.exe
 
 PLANTUML_URL=http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 ACROTEX_URL=http://mirrors.ctan.org/macros/latex/contrib/acrotex.zip
 INSTALL_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/install.ps1
 FEATURE_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/addWSLfeature.ps1
-wslGit=https://github.com/andy-5/wslgit/releases/download/v0.8.0/wslgit.exe
+wslGit=https://github.com/andy-5/wslgit/releases/download/v0.9.0/wslgit.exe
 
 all: $(OUT_ZIP)
 
