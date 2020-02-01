@@ -6,7 +6,6 @@ but adds the following capabilities:
 
 * Git-LFS (Allows for files over 4GB that Windows OS has limited)
 * Sphinx and multiple supporting packages like PlantUML and Graphwiz and Latex support
-* Travis CLI tool
 * MKISOFS Capability
 * Added [wslgit](https://github.com/andy-5/wslgit) for Windows WSL Git & Git-LFS integration
 
@@ -43,14 +42,14 @@ Be aware that if installing any WSL instance on Windows 10 1803+, your system au
 
 ### 2. Extract zip file to a new Alpine directory containing all files (Recommend C:\TEMP or Downloads folder)
 
-### 3. Run ```addWSLfeature.ps1``` to add Windows Subsystem for Linux feature and reboot, if not already done
+### 3. Run ```addWSLfeature.ps1``` as an Administrator to add Windows Subsystem for Linux feature and reboot, if not already done
 
-### 4. Run ```install.ps1``` from a Powershell window to
+### 4. Run ```install.ps1``` as the desired user (this is not a all users installation) to
 
-* Checks for and removes previous AlpineWSL distro (if distro location matches script parameters)
+* Checks for and prompts to remove previous AlpineWSL distro (if distro location matches script parameters)
 * Copies files from zip to ```C:\Users\<user>\.wsl\<distroName>\``` for install location
-* Registers to WSL, silently
-* Completes system\user configuration for Git, Git-LFS and Sphinx. **Will prompt for password of distro user**
+* Installs, silently
+* Completes system\user configuration for Git, Git-LFS and Sphinx. **Will prompt for password of distro user, this is also your sudo password**
 * Creates a desktop shortcut
 * Performs cleanup
 
@@ -60,23 +59,23 @@ Note -  Exe filename is using to the instance name to register. If you rename it
 install.ps1 [parameter [default value]] :
   - `--distroName <Alpine>`: Sets the name of <installer> exe file, this must match the filename of the actual exe
   - `--user <$env:UserName.ToLower()>`: Sets the username for this distro and Git to your Windows user name that opened Powershell
-  - `--email <username@domain>`: Sets the email for Git. This is forced prompted to enter during script
+  - `--email <username@domain>`: Sets the email for Git config. This is forced prompted to enter during script
 ```
 
 ## How-to-Use(for Installed Instance)
 
-### exe Usage
+### exe Usage (Based off wsldl)
 
 ```dos
 Usage :
     <no args>
       - Open a new shell with your default settings.
 
-    silent
-      - Use during installation of distro to supress all error messages and install completion prompt
-
     run <command line>
       - Run the given command line in that distro. Inherit current directory.
+
+    runp <command line (includes windows path)>
+      - Run the path translated command line in that distro.
 
     config [setting [value]]
       - `--default-user <user>`: Set the default user for this distro to <user>
@@ -88,24 +87,97 @@ Usage :
       - `--default-uid`: Get the default user uid in this distro
       - `--append-path`: Get on/off status of Append Windows PATH to $PATH
       - `--mount-drive`: Get on/off status of Mount drives
-      - `--lxuid`: Get LxUID key for this distro
+      - `--lxguid`: Get WSL GUID key for this distro
 
-    backup
-      - Output backup.tar.gz to the current directory using tar command.
+    backup [contents]
+      - `--tgz`: Output backup.tar.gz to the current directory using tar command
+      - `--reg`: Output settings registry file to the current directory
 
     clean
-     - Uninstall the distro.
+      - Uninstall the distro.
 
     help
       - Print this usage message.
 ```
 
-#### How to uninstall instance
+### How to uninstall instance
 
 ```dos
 >Alpine.exe clean
 
 ```
+
+### Helpful tips
+
+See [Microsoft WSL Reference Documentation](https://docs.microsoft.com/en-us/windows/wsl/reference)
+
+* The commands `bash` or `wsl` will open your default distro of WSL as well
+
+* If you forgot your password, `wsl --distribution Alpine --user root` will open the distro as root. So you can use passwd <user> to reset. Then close all terminals and reopen Alpine normally under your user account with new password.
+
+* If you need to virtually "reboot" the WSL distro or distros, as an Administrator open Services and restart the running LxssManager service. 
+
+* Other useful command line options for running Alpine or multiple distros concurrently
+
+```dos
+Usage: wsl.exe [Argument] [Options...] [CommandLine]
+
+Arguments to run Linux binaries:
+
+    If no command line is provided, wsl.exe launches the default shell.
+
+    --exec, -e <CommandLine>
+        Execute the specified command without using the default Linux shell.
+
+    --
+        Pass the remaining command line as is.
+
+Options:
+    --distribution, -d <DistributionName>
+        Run the specified distribution.
+
+    --user, -u <UserName>
+        Run as the specified user.
+
+Arguments to manage Windows Subsystem for Linux:
+
+    --export <DistributionName> <FileName>
+        Exports the distribution to a tar file.
+        The filename can be - for standard output.
+
+    --import <DistributionName> <InstallLocation> <FileName>
+        Imports the specified tar file as a new distribution.
+        The filename can be - for standard input.
+
+    --list, -l [Options]
+        Lists distributions.
+
+        Options:
+            --all
+                List all distributions, including distributions that are currently
+                being installed or uninstalled.
+
+            --running
+                List only distributions that are currently running.
+
+    -setdefault, -s <DistributionName>
+        Sets the distribution as the default.
+
+    --terminate, -t <DistributionName>
+        Terminates the distribution.
+
+    --unregister <DistributionName>
+        Unregisters the distribution.
+
+    --upgrade <DistributionName>
+        Upgrades the distribution to the WslFs file system format.
+
+    --help
+        Display usage information.
+```
+
+#### Forgotton user password
+
 
 ## How-to-Build
 
