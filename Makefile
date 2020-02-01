@@ -139,40 +139,6 @@ rootfs: base.tar.gz profile
 	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
 		pip \
 		wheel
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
-		sphinx \
-		sphinx-autobuild \
-		sphinx-jinja \
-		netaddr \
-		gitpython \
-		seqdiag \
-		sphinxcontrib-seqdiag \
-		nwdiag \
-		sphinxcontrib-nwdiag \
-		blockdiag \
-		sphinxcontrib-blockdiag \
-		actdiag \
-		sphinxcontrib-actdiag \
-		sphinx-git \
-		sphinx_rtd_theme \
-		plantuml \
-		reportlab \
-		sphinxcontrib-plantuml \
-		colorama \
-		xlsxwriter \
-		pandas
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
-		tablib \
-		ciscoconfparse \
-		nety \
-		sphinxcontrib-jupyter \
-		sphinxcontrib_ansibleautodoc \
-		sphinxcontrib-jsonschema \
-		sphinxcontrib-confluencebuilder \
-		pyyaml \
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
-		sphinx-markdown-builder \
-		sphinxcontrib-fulltoc
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(ACROTEX_URL) \
 		-o /tmp/acrotex.zip
