@@ -69,7 +69,8 @@ rootfs: base.tar.gz profile
 		unzip \
 		git-lfs \
 		subversion \
-		cdrkit
+		cdrkit \
+		neofetch
 	sudo chroot rootfs /sbin/apk add \
 		gcc \
 		ghc \
