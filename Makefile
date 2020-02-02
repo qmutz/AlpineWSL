@@ -124,7 +124,8 @@ rootfs: base.tar.gz profile
 		reportlab \
 		colorama \
 		xlsxwriter \
-		pandas
+		pandas \
+		vscod
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		tablib \
 		ciscoconfparse \
