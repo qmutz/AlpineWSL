@@ -132,11 +132,9 @@ rootfs: base.tar.gz profile
 		nety \
 		sphinxcontrib-jupyter \
 		sphinxcontrib_ansibleautodoc \
-		sphinxcontrib-jsonschema \
 		sphinxcontrib-confluencebuilder \
 		pyyaml \
-		yamlreader \
-		sphinxcontrib-mermaid
+		yamlreader
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx-markdown-builder \
 		sphinxcontrib-fulltoc
