@@ -3,8 +3,8 @@ LNCR_EXE=Alpine.exe
 
 DLR=curl
 DLR_FLAGS=-L
-BASE_URL=http://dl-cdn.alpinelinux.org/alpine/v3.11/releases/x86_64/alpine-minirootfs-3.11.4-x86_64.tar.gz
-LNCR_ZIP_URL=https://github.com/yuk7/wsldl/releases/download/20013100/icons.zip
+BASE_URL=http://dl-cdn.alpinelinux.org/alpine/v3.11/releases/x86_64/alpine-minirootfs-3.11.5-x86_64.tar.gz
+LNCR_ZIP_URL=https://github.com/yuk7/wsldl/releases/download/20040300/icons.zip
 LNCR_ZIP_EXE=Alpine.exe
 
 PLANTUML_URL=http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
@@ -18,7 +18,7 @@ all: $(OUT_ZIP)
 zip: $(OUT_ZIP)
 $(OUT_ZIP): ziproot
 	@echo -e '\e[1;31mBuilding $(OUT_ZIP)\e[m'
-	cd ziproot; zip ../$(OUT_ZIP) *
+	cd ziproot; bsdtar -a -cf ../$(OUT_ZIP) *
 
 ziproot: Launcher.exe rootfs.tar.gz ps_scripts wslGit
 	@echo -e '\e[1;31mBuilding ziproot...\e[m'
@@ -39,7 +39,7 @@ wslGit:
 exe: Launcher.exe
 Launcher.exe: icons.zip
 	@echo -e '\e[1;31mExtracting Launcher.exe...\e[m'
-	unzip icons.zip $(LNCR_ZIP_EXE)
+	bsdtar -xvf icons.zip $(LNCR_ZIP_EXE)
 	mv $(LNCR_ZIP_EXE) Launcher.exe
 
 icons.zip:
