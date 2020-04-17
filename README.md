@@ -20,8 +20,9 @@ but adds the following capabilities:
 
 ## Requirements
 
-* Windows 10 1803 April 2018 Update x64 or later.
+* Windows 10 1903 April 2018 Update x64 or later.
 * Windows Subsystem for Linux feature is enabled.
+* Windows Terminal installed from (https://aka.ms/windowsterminal)
 
 ---
 **IMPORTANT**
