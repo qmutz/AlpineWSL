@@ -31,6 +31,10 @@ Be aware that if installing any WSL instance on Windows 10 1803+, your system au
 
 [Per-directory case sensitivity and WSL](https://blogs.msdn.microsoft.com/commandline/2018/02/28/per-directory-case-sensitivity-and-wsl/)
 
+[Improved per-directory case sensitivity support in WSL](https://devblogs.microsoft.com/commandline/improved-per-directory-case-sensitivity-support-in-wsl/)
+
+If you are currently on Windows 10 2004 for the Insiders Program and planning to use WSL 2 and get the following error message "HRESULT:0x800701bc", then you will need to update your WSL Linux Kernel per (https://docs.microsoft.com/en-us/windows/wsl/wsl2-kernel)
+
 ---
 
 ## References
@@ -45,7 +49,7 @@ Be aware that if installing any WSL instance on Windows 10 1803+, your system au
 
 ### 3. Run ```addWSLfeature.ps1``` as an Administrator to add Windows Subsystem for Linux feature and reboot, if not already done
 
-### 4. Run ```install.ps1``` as the desired user (this is not a all users installation) to
+### 4. Run ```install.ps1``` as the desired user (this is not an all users installation) to
 
 * Checks for and prompts to remove previous AlpineWSL distro (if distro location matches script parameters)
 * Copies files from zip to ```C:\Users\<user>\.wsl\<distroName>\``` for install location
@@ -56,19 +60,22 @@ Be aware that if installing any WSL instance on Windows 10 1803+, your system au
 
 Note -  Exe filename is using to the instance name to register. If you rename it, you can register with a different name and have multiple installs.
 
-```dos
-install.ps1 [parameter [default value]] :
+```cmd
+`install.ps1 [parameter <default value>]`
+
+  Parameters:
   - `--distroName <Alpine>`: Sets the name of <installer> exe file, this must match the filename of the actual exe
   - `--user <$env:UserName.ToLower()>`: Sets the username for this distro and Git to your Windows user name that opened Powershell
   - `--email <username@domain>`: Sets the email for Git config. This is forced prompted to enter during script
 ```
 
-## How-to-Use(for Installed Instance)
+## How-to-Use (for Installed Instance)
 
 ### exe Usage (Based off wsldl)
 
 ```cmd
-Usage :
+Usage:
+
     <no args>
       - Open a new shell with your default settings.
 
@@ -107,90 +114,85 @@ Usage :
 #### Set "Windows Terminal" as default terminal
 
 ```cmd
->{InstanceName}.exe config --default-term wt
+<DistributionName>.exe config --default-term wt
 ```
 
 ### How to uninstall instance
 
 ```cmd
->Alpine.exe clean
+<DistributionName>.exe clean
 
 ```
 
 ### Helpful tips
 
-See [Microsoft WSL Reference Documentation](https://docs.microsoft.com/en-us/windows/wsl/reference)
-
 * The commands `bash` or `wsl` will open your default distro of WSL as well
 
-* If you forgot your password, `wsl --distribution Alpine --user root` will open the distro as root. So you can use passwd <user> to reset. Then close all terminals and reopen Alpine normally under your user account with new password.
+* If you forgot your password, `wsl --distribution <DistributionName> --user root` will open the distro as root. So you can use passwd <user> to reset. Then close all terminals and reopen Alpine normally under your user account with new password.
 
 * If you need to virtually "reboot" the WSL distro or distros, as an Administrator open Services and restart the running LxssManager service. 
 
-* Other useful command line options for running Alpine or multiple distros concurrently
 
-```dos
+### WSL Command Line Reference
+
+See [Microsoft WSL Reference Documentation](https://docs.microsoft.com/en-us/windows/wsl/reference)
+
+```cmd
 Usage: wsl.exe [Argument] [Options...] [CommandLine]
-
-Arguments to run Linux binaries:
-
-    If no command line is provided, wsl.exe launches the default shell.
-
-    --exec, -e <CommandLine>
-        Execute the specified command without using the default Linux shell.
-
-    --
-        Pass the remaining command line as is.
-
-Options:
-    --distribution, -d <DistributionName>
-        Run the specified distribution.
-
-    --user, -u <UserName>
-        Run as the specified user.
-
-Arguments to manage Windows Subsystem for Linux:
-
-    --export <DistributionName> <FileName>
-        Exports the distribution to a tar file.
-        The filename can be - for standard output.
-
-    --import <DistributionName> <InstallLocation> <FileName>
-        Imports the specified tar file as a new distribution.
-        The filename can be - for standard input.
-
-    --list, -l [Options]
-        Lists distributions.
-
-        Options:
-            --all
-                List all distributions, including distributions that are currently
-                being installed or uninstalled.
-
-            --running
-                List only distributions that are currently running.
-
-    -setdefault, -s <DistributionName>
-        Sets the distribution as the default.
-
-    --terminate, -t <DistributionName>
-        Terminates the distribution.
-
-    --unregister <DistributionName>
-        Unregisters the distribution.
-
-    --upgrade <DistributionName>
-        Upgrades the distribution to the WslFs file system format.
-
-    --help
-        Display usage information.
 ```
+
+#### Arguments to run Linux binaries
+
+If no command line is provided, wsl.exe launches the default shell.
+
+`--exec, -e <CommandLine>`: Execute the specified command without using the default Linux shell.
+
+`-- <CommandLine>`: Pass the remaining command line as is.
+
+  Options:
+
+  `--distribution, -d <DistributionName>`: Run the specified distribution.
+
+  `--user, -u <UserName>`: Run as the specified user.
+
+#### Arguments to manage Windows Subsystem for Linux
+
+`--export <DistributionName> <FileName>`: Exports the distribution to a tar file.
+                                          The filename can be - for standard output.
+
+`--import <DistributionName> <InstallLocation> <FileName>`: Imports the specified tar file as a new distribution.
+                                                            The filename can be - for standard input.
+
+`--list, -l [Options]`: Lists distributions.
+
+  Options:
+
+  `--all`: List all distributions, including distributions that are currently
+           being installed or uninstalled.
+
+  `--running`: List only distributions that are currently running.
+
+  `--verbose`: Lists which version of WSL for distributions.
+
+  `--set-default, -s <DistributionName>`: Sets the distribution as the default.
+
+  `--set-default-version <wslVersion>`: Sets the default WSL version for newly created distributions.
+
+  `--set-version <DistributionName> <wslVersion>`: Sets the WSL version for distribution.
+
+  `--terminate, -t <DistributionName>`: Terminates the distribution.
+
+  `--unregister <DistributionName>`: Unregisters the distribution.
+
+  `--upgrade <DistributionName>`: Upgrades the distribution to the WslFs file system format.
+
+  `--help`: Display usage information.
 
 ## How-to-Build
 
 AlpineWSL can build on GNU/Linux or WSL.
 
-`curl`,`bsdtar`,`tar`(gnu) and `sudo` is required for build.
+`curl`, `bsdtar`, `tar`(gnu) and `sudo` is required for build.
 
 ```shell
 $ make
