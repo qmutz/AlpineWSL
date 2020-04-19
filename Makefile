@@ -71,7 +71,8 @@ rootfs: base.tar.gz profile
 		subversion \
 		cdrkit \
 		neofetch \
-		openssh
+		openssh \
+		nano
 	sudo chroot rootfs /sbin/apk add \
 		gcc \
 		ghc \
