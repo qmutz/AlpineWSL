@@ -11,7 +11,6 @@ PLANTUML_URL=http://sourceforge.net/projects/plantuml/files/plantuml.jar/downloa
 ACROTEX_URL=http://mirrors.ctan.org/macros/latex/contrib/acrotex.zip
 INSTALL_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/install.ps1
 FEATURE_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/addWSLfeature.ps1
-wslGit=https://github.com/andy-5/wslgit/releases/download/v0.9.0/wslgit.exe
 
 all: $(OUT_ZIP)
 
@@ -20,21 +19,17 @@ $(OUT_ZIP): ziproot
 	@echo -e '\e[1;31mBuilding $(OUT_ZIP)\e[m'
 	cd ziproot; bsdtar -a -cf ../$(OUT_ZIP) *
 
-ziproot: Launcher.exe rootfs.tar.gz ps_scripts wslGit
+ziproot: Launcher.exe rootfs.tar.gz ps_scripts
 	@echo -e '\e[1;31mBuilding ziproot...\e[m'
 	mkdir ziproot
 	cp Launcher.exe ziproot/${LNCR_EXE}
 	cp rootfs.tar.gz ziproot/
 	cp install.ps1 ziproot/
 	cp addWSLfeature.ps1 ziproot/
-	cp wslgit.exe ziproot/
 
 ps_scripts:
 	$(DLR) $(DLR_FLAGS) $(INSTALL_PS_SCRIPT) -o install.ps1
 	$(DLR) $(DLR_FLAGS) $(FEATURE_PS_SCRIPT) -o addWSLfeature.ps1
-
-wslGit:
-	$(DLR) $(DLR_FLAGS) $(wslGit) -o wslgit.exe
 
 exe: Launcher.exe
 Launcher.exe: icons.zip
@@ -178,4 +173,3 @@ clean:
 	-rm base.tar.gz
 	-rm install.ps1
 	-rm addWSLfeature.ps1
-	-rm wslgit.exe
