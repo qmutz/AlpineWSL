@@ -29,7 +29,7 @@ Else {
 Write-Host -ForegroundColor Yellow ("`nInstalling Windows Subsystem for Linux (WSL), $distroName Linux to $wslPath")
 Invoke-Command -ScriptBlock { Copy-Item -Recurse -Path .\ -Destination $args[0] -Force } -ArgumentList $wslPath
 
-Start-Process $wslPath\$wslDistro -ArgumentList "install" -NoNewWindow -Wait
+Start-Process $wslPath\$wslDistro -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run cd /usr/share/texmf-dist/tex/latex/acrotex; sudo latex acrotex.ins" -NoNewWindow -Wait # would like to add this to makefile
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo mktexlsr" -NoNewWindow -Wait # would like to add this to makefile
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system core.autocrlf false"  -NoNewWindow -Wait
@@ -37,7 +37,6 @@ Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system co
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system rebase.autosquash true" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system lfs.activitytimeout 0" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system credential.helper 'cache --timeout 30000'" -NoNewWindow -Wait
-Start-Process $wslPath\$wslDistro -ArgumentList "run sudo git config --system color.diff false" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run git lfs install"  -NoNewWindow -Wait
 Write-Host -ForegroundColor Green ("`nInstallation of Windows Subsystem for Linux (WSL), $distroName Linux is complete")
 
@@ -51,7 +50,6 @@ Start-Process $wslPath\$wslDistro -ArgumentList "config --default-term wt" -NoNe
 Start-Process $wslPath\$wslDistro -ArgumentList "run echo export PLANTUML=/usr/local/plantuml.jar >> ~/.bash_profile"  -NoNewWindow -Wait # would like to add this to makefile
 Start-Process $wslPath\$wslDistro -ArgumentList "run echo neofetch >> ~/.bash_profile"  -NoNewWindow -Wait # would like to add this to makefile
 Start-Process $wslPath\$wslDistro -ArgumentList "run echo from pprint import pprint >> ~/.pyrc"  -NoNewWindow -Wait # would like to add this to makefile
-Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global http.sslVerify false"  -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global user.name $user"  -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run git config --global user.email '$email'"  -NoNewWindow -Wait
 
