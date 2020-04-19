@@ -7,7 +7,6 @@ but adds the following capabilities:
 * Git-LFS (Allows for files over 4GB that Windows OS has limited)
 * Sphinx and multiple supporting packages like PlantUML and Graphwiz and Latex support
 * MKISOFS Capability
-* Added [wslgit](https://github.com/andy-5/wslgit) for Windows WSL Git & Git-LFS integration
 
 ![screenshot](https://raw.githubusercontent.com/wiki/yuk7/wsldl/img/Arch_Alpine_Cent.png)
 
