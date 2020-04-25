@@ -140,7 +140,8 @@ rootfs: base.tar.gz profile
 		sphinxcontrib_ansibleautodoc \
 		sphinxcontrib-confluencebuilder \
 		pyyaml \
-		yamlreader
+		yamlreader \
+		sphinxcontrib-drawio-html
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx-markdown-builder \
 		sphinxcontrib-fulltoc
