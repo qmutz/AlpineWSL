@@ -29,6 +29,7 @@ Else {
 Write-Host -ForegroundColor Yellow ("`nInstalling Windows Subsystem for Linux (WSL), $distroName Linux to $wslPath")
 Invoke-Command -ScriptBlock { Copy-Item -Recurse -Path .\ -Destination $args[0] -Force } -ArgumentList $wslPath
 
+Start-Process wsl.exe -ArgumentList "--set-default-version 2" -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -NoNewWindow -Wait
 Start-Process $wslPath\$wslDistro -ArgumentList "run cd /usr/share/texmf-dist/tex/latex/acrotex; sudo latex acrotex.ins" -NoNewWindow -Wait # would like to add this to makefile
 Start-Process $wslPath\$wslDistro -ArgumentList "run sudo mktexlsr" -NoNewWindow -Wait # would like to add this to makefile
