@@ -95,7 +95,7 @@ rootfs: base.tar.gz profile
 	sudo chroot rootfs /sbin/apk add \
 		texlive-full > /dev/null
 	sudo chroot rootfs /sbin/apk add \
-		openssl1.0 \
+		openssl \
 		icu \
 		krb5 \
 		zlib \
