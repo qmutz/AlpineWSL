@@ -94,6 +94,15 @@ rootfs: base.tar.gz profile
 		ttf-dejavu
 	sudo chroot rootfs /sbin/apk add \
 		texlive-full > /dev/null
+	sudo chroot rootfs /sbin/apk add \
+		openssl1.0 \
+		icu \
+		krb5 \
+		zlib \
+		libsecret \
+		gnome-keyring \
+		desktop-file-utils \
+		xprop
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
@@ -131,7 +140,8 @@ rootfs: base.tar.gz profile
 		sphinxcontrib_ansibleautodoc \
 		sphinxcontrib-confluencebuilder \
 		pyyaml \
-		yamlreader
+		yamlreader \
+		sphinxcontrib-drawio-html
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx-markdown-builder \
 		sphinxcontrib-fulltoc
