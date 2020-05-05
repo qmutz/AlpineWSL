@@ -9,8 +9,8 @@ LNCR_ZIP_EXE=Alpine.exe
 
 PLANTUML_URL=http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 ACROTEX_URL=http://mirrors.ctan.org/macros/latex/contrib/acrotex.zip
-INSTALL_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/install.ps1
-FEATURE_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/addWSLfeature.ps1
+INSTALL_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/$(BRANCH)/install.ps1
+FEATURE_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/$(BRANCH)/addWSLfeature.ps1
 
 all: $(OUT_ZIP)
 
