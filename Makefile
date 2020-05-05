@@ -102,7 +102,8 @@ rootfs: base.tar.gz profile
 		libsecret \
 		gnome-keyring \
 		desktop-file-utils \
-		xprop
+		xprop \
+		xvfb
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
@@ -141,7 +142,7 @@ rootfs: base.tar.gz profile
 		sphinxcontrib-confluencebuilder \
 		pyyaml \
 		yamlreader \
-		sphinxcontrib-drawio-html
+		sphinxcontrib-drawio
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx-markdown-builder \
 		sphinxcontrib-fulltoc
