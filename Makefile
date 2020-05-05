@@ -9,8 +9,8 @@ LNCR_ZIP_EXE=Alpine.exe
 
 PLANTUML_URL=http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 ACROTEX_URL=http://mirrors.ctan.org/macros/latex/contrib/acrotex.zip
-INSTALL_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/install.ps1
-FEATURE_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/master/addWSLfeature.ps1
+INSTALL_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/$(BRANCH)/install.ps1
+FEATURE_PS_SCRIPT=https://raw.githubusercontent.com/binarylandscapes/AlpineWSL/$(BRANCH)/addWSLfeature.ps1
 
 all: $(OUT_ZIP)
 
@@ -102,7 +102,8 @@ rootfs: base.tar.gz profile
 		libsecret \
 		gnome-keyring \
 		desktop-file-utils \
-		xprop
+		xprop \
+		xvfb
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
@@ -141,7 +142,7 @@ rootfs: base.tar.gz profile
 		sphinxcontrib-confluencebuilder \
 		pyyaml \
 		yamlreader \
-		sphinxcontrib-drawio-html
+		sphinxcontrib-drawio
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx-markdown-builder \
 		sphinxcontrib-fulltoc

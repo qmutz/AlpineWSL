@@ -1,6 +1,6 @@
 # AlpineWSL
 
-Alpine Linux on WSL (Windows 10 1803 or later)
+Alpine Linux on WSL (Windows 10 1903 or later)
 based on [wsldl](https://github.com/yuk7/wsldl)
 but adds the following capabilities:
 
