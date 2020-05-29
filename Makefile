@@ -142,7 +142,8 @@ rootfs: base.tar.gz profile
 		sphinxcontrib-confluencebuilder \
 		pyyaml \
 		yamlreader \
-		sphinxcontrib-drawio
+		sphinxcontrib-drawio \
+		sphinxcontrib-drawio-html
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx-markdown-builder \
 		sphinxcontrib-fulltoc
