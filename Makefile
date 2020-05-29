@@ -85,9 +85,6 @@ rootfs: base.tar.gz profile
 		cython \
 		py3-numpy \
 		py3-numpy-dev \
-		python2 \
-		py2-pip \
-		python2-dev \
 		graphviz \
 		openjdk8 \
 		ghostscript \
@@ -147,9 +144,6 @@ rootfs: base.tar.gz profile
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		sphinx-markdown-builder \
 		sphinxcontrib-fulltoc
-	sudo -H chroot rootfs /usr/bin/python -m pip install --upgrade \
-		pip \
-		wheel
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(ACROTEX_URL) \
 		-o /tmp/acrotex.zip
