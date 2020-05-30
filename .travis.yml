@@ -1,9 +1,18 @@
-sudo: required
-dist: trusty
+dist: xenial
 language: bash
+addons:
+  apt:
+    packages:
+    - make
+    - curl
+    - zip
+    - unzip
+    - bsdtar
+    - check
+    - texlive-full
 before_script:
 - sudo apt-get update -qq
-- sudo apt-get install make curl bsdtar check texlive-full -qq
+- sudo apt-get install make curl zip unzip bsdtar check texlive-full -qq
 script:
   - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
   - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH"
@@ -12,6 +21,7 @@ notifications:
   email: false
 deploy:
   provider: releases
+  file_glob: true
   file: Alpine.zip
   on:
     repo: binarylandscapes/AlpineWSL
