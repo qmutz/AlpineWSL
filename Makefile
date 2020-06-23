@@ -100,9 +100,7 @@ rootfs: base.tar.gz profile
 		gnome-keyring \
 		desktop-file-utils \
 		xprop \
-		xvfb \
-		blas-dev \
-		lapack-dev
+		xvfb
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
@@ -130,7 +128,7 @@ rootfs: base.tar.gz profile
 		reportlab \
 		colorama \
 		xlsxwriter \
-		pandas \
+		pandas==1.0.4 \
 		vscod
 	sudo -H chroot rootfs /usr/bin/python3 -m pip install --upgrade \
 		tablib \
