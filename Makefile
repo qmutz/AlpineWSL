@@ -100,7 +100,9 @@ rootfs: base.tar.gz profile
 		gnome-keyring \
 		desktop-file-utils \
 		xprop \
-		xvfb
+		xvfb \
+		blas-dev \
+		lapack-dev
 	sudo chroot rootfs \
 		/usr/bin/$(DLR) $(DLR_FLAGS) $(PLANTUML_URL) \
 		-o /usr/local/plantuml.jar
